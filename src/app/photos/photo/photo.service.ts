@@ -10,6 +10,6 @@ const API = "http://localhost:3000";
 export class PhotoService {
   constructor(private httpClient: HttpClient) {}
   listFromUser(userName: string) {
-    return this.httpClient.get<Photo[]>(API + "/flavio/photos");
+    return this.httpClient.get<Photo[]>(API + "/" + userName + "/photos");
   }
 }
