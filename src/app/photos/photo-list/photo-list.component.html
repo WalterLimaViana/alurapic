@@ -1,1 +1,14 @@
+<div class="text-center mt-3 mb-3">
+  <form>
+    <input
+      class="rounded"
+      type="search"
+      placeholder=" Search..."
+      autofocus
+      (keyup)="filter= $event.target.value">
+    <!-- A função keyup dentro do parenteses informa ao angular que ele precisa pegar o que foi digitado e salvar na variável filter -->
+  </form>
+</div>
+
+
 <app-photos [photos]="photos"></app-photos>
