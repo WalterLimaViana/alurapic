@@ -1,3 +1,7 @@
+<!-- O *ngIf foi utilizado para que se não houver fotos encontradas com a description que foi digitado no input, o texto aparecerá -->
+<p class="text-center text-muted" *ngIf="!photos.length">
+  Sorry, no photos to show
+</p>>
 <ol class="list-unstyled">
   <li
     *ngFor="let cols of rows" class="row">
