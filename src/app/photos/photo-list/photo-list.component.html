@@ -5,7 +5,7 @@
       type="search"
       placeholder=" Search..."
       autofocus
-      (keyup)="filter= $event.target.value">
+      (keyup)="debounce.next($event.target.value)">
     <!-- A função keyup dentro do parenteses informa ao angular que ele precisa pegar o que foi digitado e salvar na variável filter -->
   </form>
 </div>
