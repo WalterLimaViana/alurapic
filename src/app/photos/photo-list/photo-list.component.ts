@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subject } from "rxjs/internal/Subject";
 import { debounceTime } from "rxjs/operators";
+import { PhotoService } from "../photo/photo.service";
 
 @Component({
   selector: "app-photo-list",
@@ -13,10 +14,17 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   photos: Photo[] = [];
   filter: string = "";
   debounce: Subject<string> = new Subject<string>();
+  hasMore: boolean = true;
+  currentPage: number = 1;
+  userName: string = "";
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private photoService: PhotoService
+  ) {}
 
   ngOnInit(): void {
+    this.userName = this.activatedRoute.snapshot.params.userName;
     this.photos = this.activatedRoute.snapshot.data.photos;
     //O debounce aguarda 300ms após o usuário terminar de digitar e assim colocar esse valor no filter para fazer a busca
     this.debounce
@@ -27,5 +35,14 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   //O ngOnDestroy é utilizado para 'destruir' o que fica armazenado na memória
   ngOnDestroy(): void {
     this.debounce.unsubscribe();
+  }
+
+  load() {
+    this.photoService
+      .listFromUserPaginated(this.userName, ++this.currentPage)
+      .subscribe((photos) => {
+        this.photos = this.photos.concat(photos);
+        if (!photos.length) this.hasMore = false;
+      });
   }
 }
