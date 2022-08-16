@@ -1,6 +1,13 @@
 import { debounceTime } from "rxjs/operators";
-import { Subject } from "rxjs/internal/Subject";
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subject } from "rxjs";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
 
 @Component({
   selector: "app-search",
@@ -8,12 +15,16 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
   styleUrls: ["./search.component.css"],
 })
 export class SearchComponent implements OnInit, OnDestroy {
+  @Output() onTyping = new EventEmitter<string>();
+  @Input() value: string = "";
   debounce: Subject<string> = new Subject<string>();
 
   constructor() {}
 
   ngOnInit() {
-    this.debounce.pipe(debounceTime(300));
+    this.debounce
+      .pipe(debounceTime(300))
+      .subscribe((filter) => this.onTyping.emit(filter));
   }
 
   ngOnDestroy(): void {
