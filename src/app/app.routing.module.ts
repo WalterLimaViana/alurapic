@@ -5,9 +5,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { PhotoFormComponent } from "./photos/photo-form/photo-form.component";
 import { NotFoundComponent } from "./errors/not-found/not-found.component";
 import { SignInComponent } from "./home/signin/signin.component";
+import { AuthGuard } from "./core/auth/auth.guard";
 
 const routes: Routes = [
-  { path: "", component: SignInComponent },
+  { path: "", component: SignInComponent, canActivate: [AuthGuard] },
   {
     path: "user/:userName",
     component: PhotoListComponent,
