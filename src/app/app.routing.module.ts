@@ -1,3 +1,4 @@
+import { SignUpComponent } from "./home/signup/signup.component";
 import { PhotoListResolver } from "./photos/photo-list/photo-list.resolver";
 import { PhotoListComponent } from "./photos/photo-list/photo-list.component";
 import { NgModule } from "@angular/core";
@@ -9,6 +10,7 @@ import { AuthGuard } from "./core/auth/auth.guard";
 
 const routes: Routes = [
   { path: "", component: SignInComponent, canActivate: [AuthGuard] },
+  { path: "signup", component: SignUpComponent },
   {
     path: "user/:userName",
     component: PhotoListComponent,
