@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 @Component({
-  templateUrl: "./sigin.component.html",
+  templateUrl: "./signin.component.html",
 })
 export class SignInComponent implements OnInit {
   loginForm: FormGroup;
