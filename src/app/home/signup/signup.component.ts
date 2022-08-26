@@ -12,6 +12,7 @@ import { SignUpService } from "./signup.service";
   selector: "app-signup",
   templateUrl: "./signup.component.html",
   styleUrls: ["./signup.component.css"],
+  providers: [UserNotTakenValidatorService],
 })
 export class SignUpComponent implements OnInit {
   signupForm: FormGroup;
