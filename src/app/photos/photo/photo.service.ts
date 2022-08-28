@@ -32,7 +32,7 @@ export class PhotoService {
     return this.httpClient.get<Photo>(API + "/photos/" + photoId);
   }
 
-  getComment(photoId: number) {
+  getComments(photoId: number) {
     return this.httpClient.get<PhotoComment[]>(
       API + "/photos/" + photoId + "/comments"
     );
