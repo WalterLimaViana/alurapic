@@ -40,4 +40,8 @@ export class PhotoFormComponent implements OnInit {
     reader.onload = (event: any) => (this.preview = event.target.result);
     reader.readAsDataURL(file);
   }
+
+  cancel() {
+    this.router.navigate(["home"]);
+  }
 }
