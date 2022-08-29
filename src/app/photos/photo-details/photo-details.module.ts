@@ -8,6 +8,6 @@ import { PhotoDetailsComponent } from "./photo-details.component";
 @NgModule({
   declarations: [PhotoDetailsComponent, PhotoCommentsComponent],
   exports: [PhotoDetailsComponent, PhotoCommentsComponent],
-  imports: [CommonModule, PhotoModule],
+  imports: [CommonModule, PhotoModule, RouterModule],
 })
 export class PhotoDetailsModule {}
