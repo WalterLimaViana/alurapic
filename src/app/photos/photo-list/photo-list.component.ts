@@ -21,9 +21,11 @@ export class PhotoListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userName = this.activatedRoute.snapshot.params.userName;
-    this.photos = this.activatedRoute.snapshot.data.photos;
-    //O debounce aguarda 300ms após o usuário terminar de digitar e assim colocar esse valor no filter para fazer a busca
+    this.activatedRoute.params.subscribe((params) => {
+      this.userName = params.userName;
+      this.photos = this.activatedRoute.snapshot.data.photos;
+      //O debounce aguarda 300ms após o usuário terminar de digitar e assim colocar esse valor no filter para fazer a busca
+    });
   }
 
   //O ngOnDestroy é utilizado para 'destruir' o que fica armazenado na memória
