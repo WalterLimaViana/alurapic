@@ -1,3 +1,4 @@
+import { PhotoOwnerOnlyDirective } from "./photo-owner-only/photo-owner-only.directive";
 import { VMessageModule } from "./../../shared/components/card/vmessage/vmessage.module";
 import { PhotoCommentsComponent } from "./photo-comments/photo-comments.component";
 import { RouterModule } from "@angular/router";
@@ -8,7 +9,11 @@ import { PhotoDetailsComponent } from "./photo-details.component";
 import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [PhotoDetailsComponent, PhotoCommentsComponent],
+  declarations: [
+    PhotoDetailsComponent,
+    PhotoCommentsComponent,
+    PhotoOwnerOnlyDirective,
+  ],
   exports: [PhotoDetailsComponent, PhotoCommentsComponent],
   imports: [
     CommonModule,
