@@ -26,7 +26,7 @@ export class PhotoDetailsComponent implements OnInit {
   remove() {
     this.photoService.removePhoto(this.photoId).subscribe(
       () => {
-        this.alertService.success("Photo removed successfully!");
+        this.alertService.success("Photo removed!");
         this.router.navigate([""]);
       },
       (err) => {

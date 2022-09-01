@@ -10,8 +10,8 @@ export class AlertComponent {
   @Input() timeout: 3000;
   alerts: Alert[] = [];
 
-  constructor(private AlertService: AlertService) {
-    this.AlertService.getAlert().subscribe((alert) => {
+  constructor(private alertService: AlertService) {
+    this.alertService.getAlert().subscribe((alert) => {
       if (!alert) {
         this.alerts = [];
         return;
