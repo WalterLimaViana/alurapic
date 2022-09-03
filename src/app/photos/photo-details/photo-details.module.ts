@@ -1,3 +1,4 @@
+import { ShowIfLoggedModule } from "./../../shared/directives/show-if-logged/show-if-logged.module";
 import { PhotoOwnerOnlyDirective } from "./photo-owner-only/photo-owner-only.directive";
 import { VMessageModule } from "./../../shared/components/card/vmessage/vmessage.module";
 import { PhotoCommentsComponent } from "./photo-comments/photo-comments.component";
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     RouterModule,
     ReactiveFormsModule,
     VMessageModule,
+    ShowIfLoggedModule,
   ],
 })
 export class PhotoDetailsModule {}
