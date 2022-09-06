@@ -8,9 +8,17 @@ import { HeaderComponent } from "./header/header.component";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FooterComponent } from "./footer/footer.component";
 import { MenuModule } from "../shared/components/menu/menu.module";
+import { ShowIfLoggedModule } from "../shared/directives/show-if-logged/show-if-logged.module";
 
 @NgModule({
-  imports: [CommonModule, RouterModule, AlertModule, LoadingModule, MenuModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    AlertModule,
+    LoadingModule,
+    MenuModule,
+    ShowIfLoggedModule,
+  ],
   declarations: [HeaderComponent, FooterComponent],
   exports: [HeaderComponent, FooterComponent],
   providers: [
