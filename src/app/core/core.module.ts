@@ -7,9 +7,10 @@ import { CommonModule } from "@angular/common";
 import { HeaderComponent } from "./header/header.component";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FooterComponent } from "./footer/footer.component";
+import { MenuModule } from "../shared/components/menu/menu.module";
 
 @NgModule({
-  imports: [CommonModule, RouterModule, AlertModule, LoadingModule],
+  imports: [CommonModule, RouterModule, AlertModule, LoadingModule, MenuModule],
   declarations: [HeaderComponent, FooterComponent],
   exports: [HeaderComponent, FooterComponent],
   providers: [
