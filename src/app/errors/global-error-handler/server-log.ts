@@ -1,6 +1,6 @@
 export interface ServerLog {
   message: string;
-  url: any;
+  url: string;
   userName: string;
   stack: string;
 }

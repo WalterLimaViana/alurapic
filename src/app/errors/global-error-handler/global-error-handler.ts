@@ -15,7 +15,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     const userService = this.injector.get(UserService);
     const serverLogService = this.injector.get(ServerLogService);
 
-    const url = location instanceof PathLocationStrategy ? location.path : "";
+    const url = location instanceof PathLocationStrategy ? location.path() : "";
 
     const message = error.message ? error.message : error.toString();
 

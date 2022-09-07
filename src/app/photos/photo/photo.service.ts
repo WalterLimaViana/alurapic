@@ -18,7 +18,7 @@ export class PhotoService {
   }
   listFromUserPaginated(userName: string, page: number) {
     const params = new HttpParams().append("page", page.toString());
-    return this.httpClient.get<Photo[]>(API_URL + "/" + userName + "/photosx", {
+    return this.httpClient.get<Photo[]>(API_URL + "/" + userName + "/photos", {
       params,
     });
   }
