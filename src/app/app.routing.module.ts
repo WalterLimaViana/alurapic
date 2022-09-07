@@ -6,6 +6,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { PhotoFormComponent } from "./photos/photo-form/photo-form.component";
 import { NotFoundComponent } from "./errors/not-found/not-found.component";
+import { GlobalErrorComponent } from "./errors/global-error/global-error.component";
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "home" },
@@ -34,6 +35,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: "Photo detail",
+    },
+  },
+  {
+    path: "error",
+    component: GlobalErrorComponent,
+    data: {
+      title: "Error",
     },
   },
   {
