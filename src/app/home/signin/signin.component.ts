@@ -37,19 +37,21 @@ export class SignInComponent implements OnInit {
     const userName = this.loginForm.get("userName").value;
     const password = this.loginForm.get("password").value;
 
-    this.authService.authenticate(userName, password).subscribe(
-      () =>
-        this.fromUrl
-          ? this.router.navigateByUrl(this.fromUrl)
-          : this.router.navigate(["user/", userName]),
+    if (this.loginForm.valid) {
+      this.authService.authenticate(userName, password).subscribe(
+        () =>
+          this.fromUrl
+            ? this.router.navigateByUrl(this.fromUrl)
+            : this.router.navigate(["user/", userName]),
 
-      (err) => {
-        console.log(err);
-        this.loginForm.reset();
-        this.platformDetectorService.isPlatformBrowser() &&
-          this.userNameInput.nativeElement.focus();
-        alert("Invalid username or password!");
-      }
-    );
+        (err) => {
+          console.log(err);
+          this.loginForm.reset();
+          this.platformDetectorService.isPlatformBrowser() &&
+            this.userNameInput.nativeElement.focus();
+          alert("Invalid username or password!");
+        }
+      );
+    }
   }
 }
