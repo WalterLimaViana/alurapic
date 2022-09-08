@@ -7,6 +7,7 @@ import { FormGroup } from "@angular/forms";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { lowerCaseValidator } from "src/app/shared/validators/lower-case.validator";
 import { SignUpService } from "./signup.service";
+import { userNamePassword } from "./username-password.validator";
 
 @Component({
   selector: "app-signup",
@@ -26,35 +27,41 @@ export class SignUpComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.signupForm = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.email]],
-      fullName: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(40),
+    this.signupForm = this.formBuilder.group(
+      {
+        email: ["", [Validators.required, Validators.email]],
+        fullName: [
+          "",
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(40),
+          ],
         ],
-      ],
-      userName: [
-        "",
-        [
-          Validators.required,
-          lowerCaseValidator,
-          Validators.minLength(2),
-          Validators.maxLength(30),
+        userName: [
+          "",
+          [
+            Validators.required,
+            lowerCaseValidator,
+            Validators.minLength(2),
+            Validators.maxLength(30),
+          ],
+          this.userNotTakenValidatorService.checkUserNameTaken(),
         ],
-        this.userNotTakenValidatorService.checkUserNameTaken(),
-      ],
-      password: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(14),
+        password: [
+          "",
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(14),
+          ],
         ],
-      ],
-    });
+      },
+      {
+        //Criando um  crossfield validator, que vai verificar se a senha é igual ao usuário e se for igual, mostrar uma mensagem
+        validator: userNamePassword,
+      }
+    );
 
     this.platformDetectorService.isPlatformBrowser() &&
       this.emailInput.nativeElement.focus();

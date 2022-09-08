@@ -81,6 +81,11 @@
       *ngIf="signupForm.get('password').errors?.maxlength"
       text="Maximun length is 14!">
     </app-vmessage>
+    <app-vmessage
+      *ngIf="signupForm.errors?.userNamePassword"
+      text="Username and password must be different!">
+    </app-vmessage>
+
   </div>
 
   <button class="btn
