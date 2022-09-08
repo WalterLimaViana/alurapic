@@ -2,12 +2,13 @@ import { PlatformDetectorService } from "./../../core/auth/platform-detector/pla
 import { AuthService } from "../../core/auth/auth.service";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   templateUrl: "./signin.component.html",
 })
 export class SignInComponent implements OnInit {
+  fromUrl: string;
   loginForm: FormGroup;
   //Usando o focus para que caso tenha um erro no suario ou na senha, ele volte já no input do username
   @ViewChild("userNameInput")
@@ -17,9 +18,13 @@ export class SignInComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private platformDetectorService: PlatformDetectorService
+    private platformDetectorService: PlatformDetectorService,
+    private activatedRoute: ActivatedRoute
   ) {}
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(
+      (params) => (this.fromUrl = params["fromUrl"])
+    );
     this.loginForm = this.formBuilder.group({
       userName: ["", Validators.required],
       password: ["", Validators.required],
@@ -33,7 +38,11 @@ export class SignInComponent implements OnInit {
     const password = this.loginForm.get("password").value;
 
     this.authService.authenticate(userName, password).subscribe(
-      () => this.router.navigate(["user/", userName]),
+      () =>
+        this.fromUrl
+          ? this.router.navigateByUrl(this.fromUrl)
+          : this.router.navigate(["user/", userName]),
+
       (err) => {
         console.log(err);
         this.loginForm.reset();
